@@ -1,0 +1,217 @@
+/* style.css: 撌脣��𤥁酉��/�餃� icon 頝嗪𣪧�� RWD 撅閧𣶹 */
+/* �� �𡁶鍂閮剖� */
+.banner {
+  background-color: #1f1f28;
+  color: white;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+  padding: 0.875rem 1.25rem;
+  text-align: center;
+  line-height: 1.6;
+}
+.banner b { font-weight: bold; }
+.banner a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 0.25rem;
+  display: inline-block;
+}
+.banner a:hover { text-decoration: underline; }
+
+/* �� �踵�撘� Banner 隤踵㟲 */
+@media (max-width: 1024px) {
+  .banner { font-size: 0.9375rem; padding: 0.875rem 1.125rem; }
+}
+@media (max-width: 768px) {
+  .banner { font-size: 0.875rem; padding: 0.875rem 1rem; }
+}
+@media (max-width: 639px) {
+  .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.875rem;
+    padding: 1rem;
+  }
+  .banner a {
+    display: block;
+    width: 90%;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 3.125rem;
+    text-align: center;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .banner a:hover {
+    background-color: white;
+    color: #1f1f28;
+  }
+  .banner .arrow { display: none; }
+}
+@media (max-width: 480px) {
+  .banner { font-size: 0.8125rem; padding: 1rem 0.75rem; }
+  .banner a { margin-top: 0.5rem; margin-left: 0; }
+}
+@media (max-width: 360px) {
+  .banner { font-size: 0.78125rem; padding: 1rem 0.625rem; }
+}
+
+/* �� Header �詨鱓�� */
+.site-header {
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 3rem;
+  position: relative;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  color: #3366ff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.nav-desktop a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+
+.btn-desktop {
+  background-color: #E0301F;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: white!important;
+}
+
+.btn-mobile {
+  background-color: #E0301F;
+  color: white!important;
+  padding: 0.5rem 1rem;
+  border-radius: 3rem;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* �� 閮餃��餃� link */
+.guidance-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: #333;
+  white-space: nowrap;
+  gap: 0.25rem; /* 隤踵㟲 icon ���摮烾�頝� */
+}
+.icon-user {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%236E6E6E' d='M18.5 20.247V16S16 14.5 12 14.5S5.5 16 5.5 16v4.247M1.5 12C1.5 6.201 6.201 1.5 12 1.5S22.5 6.201 22.5 12S17.799 22.5 12 22.5S1.5 17.799 1.5 12Zm10.426.5S8.5 10.68 8.5 8c0-1.933 1.569-3.5 3.504-3.5A3.495 3.495 0 0 1 15.5 8c0 2.68-3.426 4.5-3.426 4.5z' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+/* �� 鞈潛�頠� icon */
+.icon-link[data-icon="cart"]::before {
+  content: '\1F6D2';
+  margin-right: 0.5rem;
+}
+
+/* �� 瞍Ｗ嵗�厰� */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.menu-toggle .bar {
+  width: 24px;
+  height: 2px;
+  background-color: #333;
+}
+
+/* RWD */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 1rem 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+.mobile-menu.active {
+  display: flex;
+}
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.mobile-menu-body a {
+  display: block;
+  padding: 0.75rem 0;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+.close-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 3.5rem;
+}
+
+/* �� RWD */
+@media (max-width: 890px) {
+  .nav-desktop { display: none; }
+  .menu-toggle { display: flex; }
+}
+
+.guidance-link{
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: #333;
+  white-space: nowrap;
+  gap: 0.25rem; /* 隤踵㟲 icon ���摮烾�頝� */
+}
+.icon-user-mobile {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%236E6E6E' d='M18.5 20.247V16S16 14.5 12 14.5S5.5 16 5.5 16v4.247M1.5 12C1.5 6.201 6.201 1.5 12 1.5S22.5 6.201 22.5 12S17.799 22.5 12 22.5S1.5 17.799 1.5 12Zm10.426.5S8.5 10.68 8.5 8c0-1.933 1.569-3.5 3.504-3.5A3.495 3.495 0 0 1 15.5 8c0 2.68-3.426 4.5-3.426 4.5z' stroke-width='1'/%3E%3C/svg%3E");
+  margin-bottom: -0.3rem;
+  margin-right:0.4rem;
+}
