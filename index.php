@@ -16,14 +16,17 @@
   <div class="country-section">
   <h2>計劃去哪裡 <span class="highlight">旅行？</span></h2>
   <p>選擇你的 eSIM 隨時享受順暢網速</p>
+
 <?php
 $matched = []; // 儲存符合條件的變體資訊
-$limit = 9; // 最多取幾筆
+$limit = 9;    // 最多取幾筆
 
 $args = [
-    'post_type' => 'product',
+    'post_type'      => 'product',
     'posts_per_page' => -1,
-    'post_status' => 'publish',
+    'post_status'    => 'publish',
+    'orderby'        => 'menu_order', // ✅ 套用 WooCommerce 後台排序
+    'order'          => 'ASC',
 ];
 
 $query = new WP_Query($args);
@@ -34,12 +37,7 @@ if ($query->have_posts()) {
         $product_id = get_the_ID();
         $product = wc_get_product($product_id);
 
-        if (!$product) {
-            echo '⚠️ 找不到商品 ID：' . $product_id . '<br>';
-            continue;
-        }
-
-        if (!$product->is_type('variable')) {
+        if (!$product || !$product->is_type('variable')) {
             continue;
         }
 
@@ -60,22 +58,21 @@ if ($query->have_posts()) {
             foreach ($attributes as $name => $value) {
                 $decoded_name = urldecode(str_replace('attribute_', '', $name));
                 $decoded_name_lower = strtolower(trim($decoded_name));
-                
-                // 只處理 G數 屬性
+
                 if ($decoded_name_lower === 'g數' && trim($value) === '1G') {
-                    // 抓圖片：優先用變體圖，否則 fallback 用主商品圖
+                    // 圖片抓變體圖 → fallback 主圖
                     $image_id = $variation->get_image_id() ?: $product->get_image_id();
                     $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
 
                     $matched[] = [
                         '商品名稱' => $product->get_name(),
-                        '變體ID' => $variation_id,
-                        '價格' => $variation->get_price(),
-                        '圖片' => $image_url,
-                        '屬性' => $attributes
+                        '變體ID'   => $variation_id,
+                        '價格'     => $variation->get_price(),
+                        '圖片'     => $image_url,
+                        '屬性'     => $attributes,
                     ];
 
-                    break 2; // 找到後跳出兩層迴圈
+                    break 2; // 已找到一個，跳出
                 }
             }
 
@@ -87,6 +84,7 @@ if ($query->have_posts()) {
     wp_reset_postdata();
 }
 ?>
+
 <!--輸出結果-->
 <div class="country-list">
   <?php
