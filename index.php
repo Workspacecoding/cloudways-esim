@@ -121,6 +121,25 @@ if ($query->have_posts()) {
   <div class="country-button">查看所有目的地<span class="iconamoon--arrow-up-2"></span></div>
   </div>
 
+<!--eSIM優點-->
+<section class="feature-section">
+  <div class="features">
+    <div class="feature-item">
+      <span class="icon">🌐</span>
+      <P>多國方案</p>
+    </div>
+    <div class="feature-item">
+      <span class="icon">☁️</span>
+      <p>雲端開通</p>
+    </div>
+    <div class="feature-item">
+      <span class="icon">⚡</span>
+      <p>快速啟用</p>
+    </div>
+  </div>
+  <h2 class="main-title">線上開通旅行連線不中斷</h2>
+  <p class="sub-title">從出發到回家，走到哪連到哪，安心上網不中斷</p>
+</section>
 
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
