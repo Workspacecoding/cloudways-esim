@@ -95,18 +95,22 @@ if ($query->have_posts()) {
           if ($index > 0) echo '</div>'; // 關掉上一列
           echo '<div class="row">';       // 開新列
         }
+
+        // 取得該商品的連結
+        $product_link = get_permalink($item['變體ID']); // 或改抓母商品 ID 看你需求
   ?>
-        <div class="country-card">
-          <div class="flag-frame">
-            <img src="<?php echo esc_url($item['圖片']); ?>" alt="<?php echo esc_attr($item['商品名稱']); ?>">
+        <a href="<?php echo esc_url($product_link); ?>" target="_blank" rel="noopener noreferrer" class="country-link">
+          <div class="country-card">
+            <div class="flag-frame">
+              <img src="<?php echo esc_url($item['圖片']); ?>" alt="<?php echo esc_attr($item['商品名稱']); ?>">
+            </div>
+            <div class="country-info">
+              <div class="name"><?php echo esc_html($item['商品名稱']); ?></div>
+              <div class="price">NTD <?php echo esc_html($item['價格']); ?></div>
+            </div>
+            <div class="oui--arrow-up"></div>
           </div>
-          <div class="country-info">
-            <div class="name"><?php echo esc_html($item['商品名稱']); ?></div>
-            <div class="price">NTD <?php echo esc_html($item['價格']); ?></div>
-          
-          </div>
-          <div class="oui--arrow-up"></div>
-        </div>
+        </a>
   <?php
       }
       echo '</div>'; // 關掉最後一列
@@ -115,6 +119,7 @@ if ($query->have_posts()) {
     }
   ?>
 </div>
+
 <div class="button-wrapper">
   <div class="country-button">查看所有目的地<span class="iconamoon--arrow-up-2"></span></div>
   </div>

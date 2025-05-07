@@ -280,6 +280,15 @@
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   background: #EBEDEF;
 }
+.country-link {
+  color: #2A2B32; /* 黑色 */
+  text-decoration: none; /* 移除底線 */
+  display: block; /* 讓整塊都可點擊 */
+}
+.country-link:hover {
+  color: #2A2B32; /* 滑過時仍為黑色 */
+  text-decoration: none;
+}
 
 .flag-frame {
   width: 48px;
