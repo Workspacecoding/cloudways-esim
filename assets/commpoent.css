@@ -217,6 +217,8 @@
 }
 
 /*國家列表元件*/
+
+
 .country-section {
   max-width: 1250px;
   margin-top:-15rem;
@@ -246,9 +248,20 @@
   justify-content: center;
   gap: 1rem;
 }
+.country-list .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
 
 .country-card {
   display: flex;
+  flex: 1 1 calc(33.333% - 1rem); /* 三欄 */
+  background: #f8f8f8;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
   align-items: center;
   justify-content: space-between;
   background: white;
@@ -259,15 +272,20 @@
   transition: box-shadow 0.3s;
 }
 
+
+
+
+
 .country-card:hover {
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  background: #EBEDEF;
 }
 
 .flag-frame {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 2px solid black;
+  border:none;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -297,31 +315,92 @@
   font-size: 0.9rem;
 }
 
-.arrow {
-  font-size: 1.2rem;
-  color: #bbb;
-  margin-left: 12px;
+
+.oui--arrow-up {
+  display: inline-block;
+  width: 1rem;
+  height:1rem;
+  transform: rotate(90deg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%236E6E6E' d='m2.931 10.843l4.685-4.611a.546.546 0 0 1 .768 0l4.685 4.61a.55.55 0 0 0 .771 0a.53.53 0 0 0 0-.759l-4.684-4.61a1.65 1.65 0 0 0-2.312 0l-4.684 4.61a.53.53 0 0 0 0 .76a.55.55 0 0 0 .771 0'/%3E%3C/svg%3E");
+}
+.button-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-/* --- RWD 手機版垂直排列 --- */
+.country-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #E0301F;
+  border-radius: 3rem;
+  color: white;
+  text-align: center;
+
+  width: clamp(200px, 50vw, 279px); /* ✅ 螢幕小時變窄，大時最多279px */
+  height: clamp(48px, 8vw, 69px);   /* ✅ 高度也會隨螢幕調整 */
+
+  font-size: clamp(1rem, 2vw, 1.25rem); /* ✅ 字體大小隨螢幕縮放 */
+
+  padding: 0 clamp(1rem, 2vw, 2rem);
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  border: none;
+}
+
+
+
+.iconamoon--arrow-up-2 {
+  display: inline-block;
+  vertical-align: middle;  /* ✅ 和文字垂直置中對齊 */
+  width: 24px;
+  height: 24px;
+  transform: rotate(90deg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m17 14l-5-5m0 0l-5 5'/%3E%3C/svg%3E");
+}
+
 @media (max-width: 768px) {
   .country-list {
     flex-direction: column;
     align-items: center;
   }
 
+  .country-list .row {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 0;
+  }
+
   .country-card {
-    width: 90%;
+    width: 80vw;       /* 佔滿螢幕 80% */
+    max-width: 500px;  /* 可加上最大寬度保護版型 */
+    flex: none;
+    padding: 16px 20px;
   }
 
-  .country-section h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
+  .country-info {
+    flex: 1;
+    min-width: 0;
   }
 
-
-  
+  .name,
+  .price {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color:#6C6D75;
+  }
 }
+
+
 
 @media (max-width: 480px) {
 
@@ -331,3 +410,5 @@
   }
  
 }
+
+
