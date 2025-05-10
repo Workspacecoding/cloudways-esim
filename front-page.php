@@ -143,6 +143,81 @@ if ($query->have_posts()) {
   <h2 class="main-title">線上開通旅行連線不中斷</h2>
   <p class="sub-title">從出發到回家，走到哪連到哪，安心上網不中斷</p>
 </section>
+<section class="feature-section">
+  <div class="feature-block">
+    <!-- 圖片放在 HTML 後面，透過 RWD 控制順序 -->
+    <div class="feature-text">
+      <h3><?php the_field('feature_title1'); ?></h3>
+      <div class="sub-title-wrapper">
+        <div class="sub-title-line"></div>
+        <div class="sub-title-content">
+          <h4><?php the_field('feature_littletitle1'); ?></h4>
+          <p>
+          <?php the_field('feature_text1'); ?>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <?php
+$image = get_field('feature_img1'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="feature-img">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+<?php endif; ?>
+  </div>
+  <!-- 第二組 -->
+  <div class="feature-block reverse">
+    <!-- 圖片放在 HTML 後面，透過 RWD 控制順序 -->
+    <div class="feature-text">
+      <h3><?php the_field('feature_title2'); ?></h3>
+      <div class="sub-title-wrapper">
+        <div class="sub-title-line"></div>
+        <div class="sub-title-content">
+          <h4><?php the_field('feature_littletitle2'); ?></h4>
+          <p>
+          <?php the_field('feature_text2'); ?>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <?php
+$image = get_field('feature_img2'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="feature-img">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+<?php endif; ?>
+  </div>
+    <!-- 第三組 -->
+    <div class="feature-block third">
+    <!-- 圖片放在 HTML 後面，透過 RWD 控制順序 -->
+    <div class="feature-text">
+      <h3><?php the_field('feature_title3'); ?></h3>
+      <div class="sub-title-wrapper">
+        <div class="sub-title-line"></div>
+        <div class="sub-title-content">
+          <h4><?php the_field('feature_littletitle3'); ?></h4>
+          <p>
+          <?php the_field('feature_text3'); ?>
+          </p>
+        </div>
+      </div>
+    </div>
+    <?php
+$image = get_field('feature_img3'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="feature-img">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+<?php endif; ?>
+  </div>
+</section>
 
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
