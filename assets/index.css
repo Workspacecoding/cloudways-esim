@@ -192,3 +192,175 @@
     }
   }
   
+  /*特色CSS*/
+  .feature-section {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .feature-block {
+    display: flex;
+    align-items:left;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin:3rem 0 4rem 0;
+  }
+  
+   /* 如果是 reverse 區塊 高度不同 */
+   .feature-block.reverse {
+    margin:-3rem 0 6rem 0;
+
+   }
+/* 如果是 third 區塊 高度不同 */
+
+
+.feature-block.third {
+  margin:10rem 0 6rem 0;
+
+ }
+  .feature-text {
+    flex: 1 1 50%;
+    order: 1; /* 桌機文字在左 */
+  }
+  
+    /* 如果是 reverse 區塊，交換順序 */
+.feature-block.reverse .feature-text {
+  order: 2;
+}
+
+.feature-block.reverse .feature-img {
+  order: 1;
+}
+.feature-img {
+  flex: 1 1 45%;
+  text-align: center;
+  order: 2;
+  padding-top: 2rem; /* ✅ 用 padding 取代負 margin 更穩定 */
+  flex: 0 0 400px;     /* 固定圖片寬度 */
+  max-width: 100%;
+  padding: 2rem 1rem;  /* 上下、左右內距 */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -10rem 0 0 0; 
+}
+
+
+.feature-img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+  object-fit: contain; /* 可選：確保圖片在容器中好看 */
+}
+
+  /*reverse img*/
+  .feature-block.reverse .feature-img{
+    display: flex;
+    align-items: center;    /* 垂直置中 */
+    justify-content: center; /* 如果你也希望水平置中 */
+    flex: 0 0 400px;     /* 固定圖片寬度 */
+    max-width: 100%;
+    padding: 2rem 1rem;  /* 上下、左右內距 */
+    text-align: center;
+
+  }
+
+   /*third img*/
+   .feature-block.third .feature-img{
+    display: flex;
+    align-items: center;    /* 垂直置中 */
+    justify-content: center; /* 如果你也希望水平置中 */
+    flex: 0 0 400px;     /* 固定圖片寬度 */
+    max-width: 100%;
+    padding: 2rem 1rem;  /* 上下、左右內距 */
+    text-align: center;
+
+
+
+  }
+
+
+
+
+  /* 主標題 */
+  .feature-text h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  /* 副標題區塊，含藍線 */
+  .sub-title-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .sub-title-line {
+    width: 4px;
+    height: auto;
+    background-color: #3c6ff8;
+    border-radius: 2px;
+    margin-right: 12px;
+  }
+  
+  .sub-title-content {
+    flex: 1;
+  }
+  
+  .sub-title-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: #222;
+    text-align: left;
+  }
+  
+  .sub-title-content p {
+    color: #777;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+    text-align: left;
+    padding-right:2rem;
+  }
+
+
+  
+  /* ---------- 手機版 RWD ---------- */
+  @media (max-width: 890px) {
+    .feature-block {
+      flex-direction: column;
+      text-align: left; /* 保持段落對齊 */
+    }
+  
+    .feature-text {
+      order: 2;
+      padding: 0 16px;
+    }
+  
+    .feature-img {
+      order: 1;
+    }
+  
+    /* 保持副標區塊為橫向排列（藍線在左） */
+    .sub-title-wrapper {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  
+    .sub-title-line {
+      width: 4px;
+      height: auto;
+      margin-right: 12px;
+    }
+  
+    .sub-title-content {
+      text-align: left;
+    }
+  }
+  
