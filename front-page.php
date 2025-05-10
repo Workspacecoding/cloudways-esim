@@ -218,6 +218,11 @@ if ($image): ?>
 <?php endif; ?>
   </div>
 </section>
+<!--eSIM步驟-->
+<section class="eSIM-step-title">
+<h2 class="main-title">OceanEsim 如何運作？</h2>
+  <p class="sub-title">免插卡、免等待，一掃即用，輕鬆暢遊全球網路</p>
+</section>
 
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
