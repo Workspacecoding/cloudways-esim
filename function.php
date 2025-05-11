@@ -23,6 +23,13 @@ add_action('wp_enqueue_scripts', function () {
     // 子主題樣式
     wp_enqueue_style('main-style', $uri . '/style.css', [], filemtime($dir . '/style.css'));
     wp_enqueue_style('component-style', $uri . '/assets/css/component.css', [], filemtime($dir . '/assets/css/component.css'));
+    
+    
+      
+      
+    
+
+
 });
 
 
