@@ -471,7 +471,7 @@
 
 .benefit-container {
   max-width: 1250px;
-  margin: 0 auto;
+  margin: -1rem auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(1rem, 3vw, 2rem);
