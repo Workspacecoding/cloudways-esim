@@ -533,3 +533,92 @@
     font-size: 0.95rem;
   }
 }
+
+/*客戶介紹*/
+
+.refer-section {
+  padding: clamp(2rem, 6vw, 4rem) 1rem;
+  background-color: #fff;
+}
+
+
+.refer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap:nowrap;;
+  max-width: 1250px;
+  margin: 0 auto;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+.refer-image {
+  flex: 1 1 50%;
+  order: 1;
+  align-items: center;     /* 垂直置中 */
+  justify-content: center; /* 水平置中 */
+}
+
+.refer-main-img {
+  width: 80%;
+  max-width: 500px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+/* 右側文字區 */
+.refer-text {
+  flex: 1 1 50%;
+  order: 2;
+  padding-right:2rem;
+}
+
+.refer-text h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+.refer-text p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #777;
+  line-height: 1.6;
+  padding:2rem 0 0 0;
+  margin: bottom 1.5em;
+}
+
+.refer-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid #3c6ff8;
+  color: #3c6ff8;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.refer-btn:hover {
+  background-color: #3c6ff8;
+  color: #fff;
+}
+
+/* ✅ 手機版 RWD */
+@media (max-width: 890px) {
+  .refer-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .refer-text {
+    text-align: center;
+    padding-right:0rem;
+  }
+
+}

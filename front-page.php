@@ -344,7 +344,25 @@ if ($image): ?>
       <div class="cta-text"><?php the_field('good_littletitle6'); ?></div>
     </div>
 </section>
-
+<section class="refer-section">
+  <div class="refer-container">
+    <div class="refer-image">
+    <?php 
+$image = get_field('discount_img'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="refer-main-img">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+  <?php endif; ?>
+    </div>
+    <div class="refer-text">
+      <h2><?php the_field('discount_title'); ?></h2>
+      <p><?php the_field('discount_text'); ?></p>
+      <a href="#" class="refer-btn">看更多資訊</a>
+    </div>
+  </div>
+</section>
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
 
