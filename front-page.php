@@ -261,47 +261,88 @@ if ($image): ?>
   <div class="benefit-container">
      <!-- 第1組 共六組 -->
     <div class="benefit-item">
-      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
-      <h3>手機一掃即用</h3>
-      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
-      <div class="cta-text">一鍵設定・出國快速搞定</div>
+      <?php
+$image = get_field('good_img1'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="benefit-icon">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+<?php endif; ?>
+      <h3><?php the_field('good_title1'); ?></h3>
+      <p><?php the_field('good_text1'); ?></p>
+      <div class="cta-text"><?php the_field('good_littletitle1'); ?></div>
     </div>
     <!-- 第2組 共六組 -->
     <div class="benefit-item">
-      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
-      <h3>手機一掃即用</h3>
-      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
-      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    <?php
+$image = get_field('good_img2'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="benefit-icon">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+  <?php endif; ?>
+      <h3><?php the_field('good_title2'); ?></h3>
+      <p><?php the_field('good_text2'); ?></p>
+      <div class="cta-text"><?php the_field('good_littletitle2'); ?></div>
     </div>
       <!-- 第3組 共六組 -->
       <div class="benefit-item">
-      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
-      <h3>手機一掃即用</h3>
-      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
-      <div class="cta-text">一鍵設定・出國快速搞定</div>
+<?php 
+$image = get_field('good_img3'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="benefit-icon">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+  <?php endif; ?>
+          <h3><?php the_field('good_title3'); ?></h3>
+      <p><?php the_field('good_text3'); ?></p>
+      <div class="cta-text"><?php the_field('good_littletitle3'); ?></div>
     </div>
        <!-- 第4組 共六組 -->
        <div class="benefit-item">
-      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
-      <h3>手機一掃即用</h3>
-      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
-      <div class="cta-text">一鍵設定・出國快速搞定</div>
+       <?php 
+$image = get_field('good_img4'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="benefit-icon">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+  <?php endif; ?>
+          <h3><?php the_field('good_title4'); ?></h3>
+      <p><?php the_field('good_text4'); ?></p>
+      <div class="cta-text"><?php the_field('good_littletitle4'); ?></div>
     </div>
     <!-- 第5組 共六組 -->
     <div class="benefit-item">
-      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
-      <h3>手機一掃即用</h3>
-      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
-      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    <?php 
+$image = get_field('good_img5'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="benefit-icon">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+  <?php endif; ?>
+          <h3><?php the_field('good_title5'); ?></h3>
+      <p><?php the_field('good_text5'); ?></p>
+      <div class="cta-text"><?php the_field('good_littletitle5'); ?></div>
     </div>
       <!-- 第6組 共六組 -->
       <div class="benefit-item">
-      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
-      <h3>手機一掃即用</h3>
-      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
-      <div class="cta-text">一鍵設定・出國快速搞定</div>
-    </div>
+    <?php 
+$image = get_field('good_img6'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="benefit-icon">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
   </div>
+  <?php endif; ?>
+          <h3><?php the_field('good_title6'); ?></h3>
+      <p><?php the_field('good_text6'); ?></p>
+      <div class="cta-text"><?php the_field('good_littletitle6'); ?></div>
+    </div>
 </section>
 
 </main>
