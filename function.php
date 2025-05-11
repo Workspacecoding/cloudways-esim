@@ -1,7 +1,11 @@
 <?php
 defined('ABSPATH') || exit;
 
+// ✅ 載入樣式
 add_action('wp_enqueue_scripts', function () {
+    $uri = get_stylesheet_directory_uri();
+    $dir = get_stylesheet_directory();
+
     // 父主題 CSS
     wp_enqueue_style(
         'blocksy-styles',
@@ -16,13 +20,10 @@ add_action('wp_enqueue_scripts', function () {
         null
     );
 
-    add_action('wp_enqueue_scripts', function () {
-        $uri = get_stylesheet_directory_uri();
-        $dir = get_stylesheet_directory();
-    
-        wp_enqueue_style('main-style', $uri . '/style.css', [], filemtime($dir . '/style.css'));
-        wp_enqueue_style('component-style', $uri . '/assets/css/component.css', [], filemtime($dir . '/assets/css/component.css'));
-    });
-    
-
+    // 子主題樣式
+    wp_enqueue_style('main-style', $uri . '/style.css', [], filemtime($dir . '/style.css'));
+    wp_enqueue_style('component-style', $uri . '/assets/css/component.css', [], filemtime($dir . '/assets/css/component.css'));
 });
+
+
+

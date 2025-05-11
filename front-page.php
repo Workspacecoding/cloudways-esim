@@ -218,6 +218,91 @@ if ($image): ?>
 <?php endif; ?>
   </div>
 </section>
+<!--eSIM步驟-->
+<section class="eSIM-step-title">
+<h2 class="main-title">OceanEsim 如何運作？</h2>
+  <p class="sub-title">免插卡、免等待，一掃即用，輕鬆暢遊全球網路</p>
+</section>
+<section class="steps-section">
+  <div class="steps-container">
+    
+    <div class="step-box">
+      <div class="step-number">1</div>
+      <h3>為旅程購買eSIM方案</h3>
+      <p>選擇旅行目的地，並選擇上網方案</p>
+      <!-- 你可以加選項按鈕、國旗、單位等 -->
+      <?php echo wp_get_attachment_image(134, 'medium', false, ['class' => 'step-image']); ?>
+    </div>
+
+    <div class="step-box">
+      <div class="step-number">2</div>
+      <h3>掃描QRcode設訂eSIM</h3>
+      <p>根據電子郵件說明設定eSIM</p>
+      <?php echo wp_get_attachment_image(131, 'medium', false, ['class' => 'step-image']); ?>
+      <!-- 放上 QRCode 圖片 -->
+    </div>
+
+    <div class="step-box">
+      <div class="step-number">3</div>
+      <h3>享受eSIM方案</h3>
+      <p>方案會於抵達旅行目的地後啟用</p>
+      <!-- 放上 Wi-Fi 圖標等圖片 -->
+      <?php echo wp_get_attachment_image(135, 'medium', false, ['class' => 'step-image']); ?>
+    </div>
+
+  </div>
+</section>
+<!--eSIM 優勢-->
+<section class="why-esim-section">
+<h2 class="main-title">為什麼選擇 OceaneSIM？</h2>
+  <p class="sub-title">因應多元場景需求・上網更簡單、靈活</p>
+</section>
+<section class="esim-benefits">
+  <div class="benefit-container">
+     <!-- 第1組 共六組 -->
+    <div class="benefit-item">
+      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
+      <h3>手機一掃即用</h3>
+      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
+      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    </div>
+    <!-- 第2組 共六組 -->
+    <div class="benefit-item">
+      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
+      <h3>手機一掃即用</h3>
+      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
+      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    </div>
+      <!-- 第3組 共六組 -->
+      <div class="benefit-item">
+      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
+      <h3>手機一掃即用</h3>
+      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
+      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    </div>
+       <!-- 第4組 共六組 -->
+       <div class="benefit-item">
+      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
+      <h3>手機一掃即用</h3>
+      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
+      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    </div>
+    <!-- 第5組 共六組 -->
+    <div class="benefit-item">
+      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
+      <h3>手機一掃即用</h3>
+      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
+      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    </div>
+      <!-- 第6組 共六組 -->
+      <div class="benefit-item">
+      <img src="icon1.png" alt="手機一掃" class="benefit-icon">
+      <h3>手機一掃即用</h3>
+      <p>無需事前領卡，出國前手機即可啟用，省下出國前的寶貴時間。</p>
+      <div class="cta-text">一鍵設定・出國快速搞定</div>
+    </div>
+  </div>
+</section>
 
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
