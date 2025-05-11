@@ -373,4 +373,88 @@
   
      }
   }
+
+  /*step setcion*/
+
+  .steps-section {
+    background-color: #f9faff;
+    padding: clamp(2rem, 5vw, 4rem) 1rem;
+  }
   
+  .steps-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 預設 3 欄 */
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+  
+  
+  .step-box {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    align-items: flex-start; /* ✅ 讓所有元素靠左 */
+    justify-content: center;
+    text-align: left;  
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .step-box:hover {
+    transform: translateY(-4px);
+  }
+  
+  .step-number {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #e9ecf2;
+    color: #333;
+    font-weight: bold;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+  
+  .step-box h3 {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  .step-box p {
+    font-size: 1rem;
+    color: #666;
+    margin-left:0rem;
+    
+  }
+  
+  .step-image {
+    width: 80%;
+    height: auto;
+    margin: 1.5rem auto 0; /* ✅ 上 1.5rem、左右 auto、下 0 */
+    display: block;
+  }
+  
+  
+  @media (max-width: 890px) {
+    .step-image {
+      display: none; /* ❌ 這會讓圖片在手機不見 */
+    }
+    .steps-container {
+      grid-template-columns: 1fr; /* ✅ 變成一欄直排 */
+    }
+  
+    .step-box {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
