@@ -26,35 +26,12 @@ add_action('wp_enqueue_scripts', function () {
     
 });
 ?>
+<?php
+function render_country_search_result() {
+  if (empty($_GET['country'])) return '';
 
-<?php endif; ?>
-          <h3><?php the_field('good_title6'); ?></h3>
-      <p><?php the_field('good_text6'); ?></p>
-      <div class="cta-text"><?php the_field('good_littletitle6'); ?></div>
-    </div>
-</section>
-<section class="refer-section">
-  <div class="refer-container">
-    <div class="refer-image">
-    <?php 
-$image = get_field('discount_img'); // 這裡改成你的欄位名稱
-if ($image): ?>
-  <div class="refer-main-img">
-    <img src="<?php echo esc_url($image['url']); ?>"
-         alt="<?php echo esc_attr($image['alt']); ?>">
-  </div>
-  <?php endif; ?>
-    </div>
-    <div class="refer-text">
-      <h2><?php the_field('discount_title'); ?></h2>
-      <p><?php the_field('discount_text'); ?></p>
-      <a href="#" class="refer-btn">看更多資訊</a>
-    </div>
-  </div>
-</section>
-<?php if (!empty($_GET['country'])): ?>
-<div id="result-output" style="display:none;">
-  <?php
+  ob_start(); // 捕捉 echo 輸出
+
   $keyword = sanitize_text_field($_GET['country']);
   $found = false;
 
@@ -66,12 +43,14 @@ if ($image): ?>
       [
         'taxonomy' => 'product_cat',
         'field' => 'slug',
-        'terms' => ['sim卡','eSIM'],
+        'terms' => ['sim卡', 'eSIM'],
       ]
     ]
   ];
 
   $query = new WP_Query($args);
+
+  echo '<div id="result-output" style="display:none;">';
 
   while ($query->have_posts()) {
     $query->the_post();
@@ -90,33 +69,34 @@ if ($image): ?>
         ) {
           $image = wp_get_attachment_url($variation->get_image_id());
           $price = $variation->get_price();
-          $found = true;
           $link = get_permalink($variation->get_id());
-          echo '<h4 class="dropdown-title">旅行目的地</h4>';
 
+          echo '<h4 class="dropdown-title">旅行目的地</h4>';
           echo '<a href="' . esc_url($link) . '" target="_blank" class="result-item">';
           echo '<img src="' . esc_url($image) . '" alt="圖">';
-          
           echo '<div class="info">';
           echo '<div class="name">' . esc_html($product->get_name()) . '</div>';
           echo '<div class="price">NTD ' . esc_html($price) . ' 起</div>';
-          echo '</div>'; // .info
-          
-          echo '</a>'; // .result-item
-          
+          echo '</div>';
+          echo '</a>';
 
-          break 2; // 找到就不繼續其他商品
+          $found = true;
+          break 2;
         }
       }
     }
   }
 
-  wp_reset_postdata();
-
   if (!$found) {
     echo '<p>❌ 沒有找到相關商品。</p>';
   }
-  ?>
-</div>
-<?php endif; ?>
+
+  echo '</div>';
+
+  wp_reset_postdata();
+  return ob_get_clean(); // 回傳輸出字串
+}
+
+?>
+
 

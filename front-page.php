@@ -12,6 +12,7 @@
   <div id="result-box">旅行目的地</div>
 </div>
   </div>
+
 </section>
 
   <!--產品列表區塊-->
@@ -432,25 +433,7 @@ if ($image): ?>
   ?>
 </div>
 <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
-
-
-
-
-
 </body>
-
 <?php get_footer(); ?>

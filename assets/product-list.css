@@ -1,0 +1,44 @@
+/*產品列表*/
+.search-destination {
+    background: linear-gradient(to bottom right,rgba(220, 237, 252, 0.5), #ffffff);
+    padding: 80px 3rem;
+    text-align:left;
+    margin-left:-6rem;
+  }
+  
+  .search-destination .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .search-destination .title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  
+  .search-destination .bold {
+    font-weight: 700;
+    color: #000;
+  }
+  
+  .search-destination .highlight {
+    font-weight: 700;
+    color: #2e72f5; /* 藍漸層色可再用背景加強 */
+  }
+  
+  .search-destination .subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    line-height: 1.8;
+  }
+  
+  .search-position{
+    margin-left:-6rem;
+  }
+
+  @media (max-width: 890px) {
+    .search-destination {
+      margin-left: 0;
+    }
+  }
