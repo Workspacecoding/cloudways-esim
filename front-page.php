@@ -6,11 +6,14 @@
     <h1>全球 eSIM 上網服務</h1>
     <h2>一卡在手 <span class="highlight">輕鬆連線 130+ 國家</span></h2>
     <p>價格實惠！即買即用，秒速連接 4G/5G 高速網路！</p>
-    <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input type="text" placeholder="搜尋目的地" />
-    </div>
+    <div class="search-wrapper" id="search-wrapper">
+  <span class="search-icon">🔍</span>
+  <input type="text" id="countryInput" placeholder="搜尋目的地">
+  <div id="result-box">旅行目的地</div>
+</div>
   </div>
+
+
 </section>
 
   <!--產品列表區塊-->
@@ -364,183 +367,6 @@ if ($image): ?>
     </div>
   </div>
 </section>
-
-<p>測試</p>
-<style>
-#search-wrapper {
-  position: relative;
-  max-width: 500px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background: white;
-  border: 2px solid #3c6ff8;
-  border-radius: 50px;
-  padding: 10px 20px;
-  display: flex;
-    max-height:60px;
-    background: white;
-
-    border: 2px solid #3c6ff8;
-    border-radius: 50px;
-    padding: 10px 20px;
-    text-align: left;
-}
-
-#search-wrapper .search-icon {
-  font-size: 1.2rem;
-  margin-right: 10px;
-  color: #3c6ff8;
-}
-
-#search-wrapper input {
-  all: unset !important;
-  flex: 1;
-  font-size: 1.2rem;
-}
-
-#search-wrapper input::placeholder {
-  color: #919399;
-  font-size: 1.2rem;
-  letter-spacing: 0.5px;
-}
-
-#result-box {
-  position: absolute;
-  top: 65px;
-  left: 0;
-  width: 90%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  background: #fff;
-  border: 1px solid #A59ED4;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  padding:15px;
-  display: none;
-  border-radius: 16px;
-  font-family: "Noto Sans TC", sans-serif;
-}
-
-/* Dropdown 卡片樣式 */
-
-
-.dropdown-title {
-  font-weight: bold;
-  color: #1e40af;
-  font-size: 18px;
-  margin-bottom: 16px;
-  margin-left:1rem;
-}
-.result-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.2s ease;
-}
-
-.result-item:hover {
-  background: #EBEDEF;
-  box-shadow: 0 4px 16px rgba(60, 111, 248, 0.1);
-}
-
-.result-item img {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.result-item .info {
-  display: flex;
-  flex-direction: column;
-}
-
-.result-item .info .name {
-  font-weight: bold;
-  font-size: 16px;
-  color: #222;
-
-}
-
-.result-item .info .price {
-  font-size: 14px;
-  color: #999;
-}
-
-</style>
-
-<div id="search-wrapper">
-  <span class="search-icon">🔍</span>
-  <input type="text" id="countryInput" placeholder="輸入國家（如 台灣）">
-  <div id="result-box">旅行目的地</div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.getElementById("countryInput");
-  const resultBox = document.getElementById("result-box");
-  const wrapper = document.getElementById("search-wrapper");
-
-  // ✅ 載入時先清空 dropdown
-  resultBox.innerHTML = '';
-  resultBox.style.display = 'none';
-
-  // ✅ 按 Enter 開始查詢
-  input.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const keyword = input.value.trim();
-      if (!keyword) return;
-
-      // 顯示 loading 訊息
-      resultBox.innerHTML = '<p style="padding:10px;">🔍 查詢中...</p>';
-      resultBox.style.display = 'block';
-
-      fetch(window.location.href.split('?')[0] + '?country=' + encodeURIComponent(keyword))
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const output = doc.querySelector('#result-output');
-          if (output) {
-            resultBox.innerHTML = output.innerHTML;
-            resultBox.style.display = 'block';
-          } else {
-            resultBox.innerHTML = '<p style="color:red; padding:10px;">❌ 找不到結果</p>';
-          }
-        });
-    }
-  });
-
-  // ✅ 清空輸入時，自動關閉 dropdown
-  input.addEventListener("input", function () {
-    const keyword = input.value.trim();
-    if (!keyword) {
-      resultBox.innerHTML = '';
-      resultBox.style.display = 'none';
-    }
-  });
-
-  // ✅ 點擊外部自動關閉 dropdown
-  document.addEventListener("click", function (e) {
-    if (!wrapper.contains(e.target)) {
-      resultBox.innerHTML = '';
-      resultBox.style.display = 'none';
-    }
-  });
-});
-</script>
-
-
 
 <?php if (!empty($_GET['country'])): ?>
 <div id="result-output" style="display:none;">
