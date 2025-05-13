@@ -129,7 +129,7 @@
   
   .dropdown-title {
     font-weight: bold;
-    color: #1e40af;
+    color: #1e40af !important;
     font-size: 18px;
     margin-bottom: 16px;
     margin-left:1rem;

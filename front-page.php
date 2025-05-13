@@ -12,8 +12,6 @@
   <div id="result-box">旅行目的地</div>
 </div>
   </div>
-
-
 </section>
 
   <!--產品列表區塊-->
@@ -367,7 +365,6 @@ if ($image): ?>
     </div>
   </div>
 </section>
-
 <?php if (!empty($_GET['country'])): ?>
 <div id="result-output" style="display:none;">
   <?php
@@ -382,7 +379,7 @@ if ($image): ?>
       [
         'taxonomy' => 'product_cat',
         'field' => 'slug',
-        'terms' => ['sim卡'],
+        'terms' => ['sim卡','eSIM'],
       ]
     ]
   ];
@@ -430,11 +427,12 @@ if ($image): ?>
   wp_reset_postdata();
 
   if (!$found) {
-    echo '<p>❌ 沒有找到變體包含「1G / 3天」的商品。</p>';
+    echo '<p>❌ 沒有找到相關商品。</p>';
   }
   ?>
 </div>
 <?php endif; ?>
+
 
 
 

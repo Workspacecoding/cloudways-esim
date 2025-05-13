@@ -27,6 +27,31 @@ add_action('wp_enqueue_scripts', function () {
 });
 ?>
 
+<?php endif; ?>
+          <h3><?php the_field('good_title6'); ?></h3>
+      <p><?php the_field('good_text6'); ?></p>
+      <div class="cta-text"><?php the_field('good_littletitle6'); ?></div>
+    </div>
+</section>
+<section class="refer-section">
+  <div class="refer-container">
+    <div class="refer-image">
+    <?php 
+$image = get_field('discount_img'); // 這裡改成你的欄位名稱
+if ($image): ?>
+  <div class="refer-main-img">
+    <img src="<?php echo esc_url($image['url']); ?>"
+         alt="<?php echo esc_attr($image['alt']); ?>">
+  </div>
+  <?php endif; ?>
+    </div>
+    <div class="refer-text">
+      <h2><?php the_field('discount_title'); ?></h2>
+      <p><?php the_field('discount_text'); ?></p>
+      <a href="#" class="refer-btn">看更多資訊</a>
+    </div>
+  </div>
+</section>
 <?php if (!empty($_GET['country'])): ?>
 <div id="result-output" style="display:none;">
   <?php
@@ -41,7 +66,7 @@ add_action('wp_enqueue_scripts', function () {
       [
         'taxonomy' => 'product_cat',
         'field' => 'slug',
-        'terms' => ['sim卡'],
+        'terms' => ['sim卡','eSIM'],
       ]
     ]
   ];
@@ -89,10 +114,9 @@ add_action('wp_enqueue_scripts', function () {
   wp_reset_postdata();
 
   if (!$found) {
-    echo '<p>❌ 沒有找到變體包含「1G / 3天」的商品。</p>';
+    echo '<p>❌ 沒有找到相關商品。</p>';
   }
   ?>
 </div>
 <?php endif; ?>
-
 
