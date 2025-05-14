@@ -6,12 +6,19 @@
     <h1>全球 eSIM 上網服務</h1>
     <h2>一卡在手 <span class="highlight">輕鬆連線 130+ 國家</span></h2>
     <p>價格實惠！即買即用，秒速連接 4G/5G 高速網路！</p>
-    <div class="search-wrapper" id="search-wrapper">
-  <span class="search-icon">🔍</span>
-  <input type="text" id="countryInput" placeholder="搜尋目的地">
-  <div id="result-box">旅行目的地</div>
-</div>
+    <div class="search-container">
+  <div class="search-wrapper" id="search-wrapper">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="countryInput" placeholder="搜尋目的地" />
   </div>
+  <div id="result-box">
+    <div class="dropdown-title">旅行目的地</div>
+    <!-- 搜尋結果會插入這 -->
+  </div>
+</div>
+
+  </div>
+
 </section>
 
   <!--產品列表區塊-->
@@ -432,25 +439,7 @@ if ($image): ?>
   ?>
 </div>
 <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
-
-
-
-
-
 </body>
-
 <?php get_footer(); ?>
