@@ -34,8 +34,8 @@
   }
 
   .search-destination .search-wrapper{
-
-    margin-left: 7rem;
+    position: relative;
+margin-left:7rem;
   }
 
   .full-width-mode{
