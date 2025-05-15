@@ -1,30 +1,31 @@
 
   
-  .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 130vh;
-    padding: 40px 20px;
-    background: linear-gradient(to bottom right,rgba(220, 237, 252, 0.5), #ffffff);
-  }
-  
-  .hero-content {
-    max-width: 43rem;
-    width: 100%;
-    margin-top:-15rem;
+.hero {
+  height: 50rem; /* ✅ 自己指定固定高度 */
+  padding: 40px 20px;
+  background: linear-gradient(to bottom right, rgba(220, 237, 252, 0.5), #ffffff);
+  display: flex; /* ✅ 保持置中不脫離文流 */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
 
-  }
+.hero-content {
+  max-width: 60rem;
+  width: 100%;
+  margin-top:-15rem; /* ✅ 千萬不要用負值！ */
+  position: static; /* ✅ 不要用 absolute */
+}
   
   .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin: 0;
   }
   
   .hero-content h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     margin: 10px 0;
   }
@@ -186,6 +187,10 @@
   }
   /* ---------- RWD ---------- */
   
+  
+  /* 小螢幕移除或調低高度 */
+
+
   @media (max-width: 768px) {
     .hero-content h1,
     .hero-content h2 {
@@ -763,3 +768,20 @@
   }
 
 }
+
+
+
+@media (min-width: 1920px) {
+
+  .hero-content h1,
+  .hero-content h2 {
+    font-size: 3.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.25rem;
+  }
+
+  .search-box,
+  #search-wrapper {
+    max-width:

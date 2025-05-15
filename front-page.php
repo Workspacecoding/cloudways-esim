@@ -4,7 +4,7 @@
 <section class="hero">
   <div class="hero-content">
     <h1>全球 eSIM 上網服務</h1>
-    <h2>一卡在手 <span class="highlight">輕鬆連線 130+ 國家</span></h2>
+    <h2>一卡在手 <span class="highlight">輕鬆連線130+國家</span></h2>
     <p>價格實惠！即買即用，秒速連接 4G/5G 高速網路！</p>
     <div class="search-position">
   <div class="search-wrapper" id="search-wrapper">

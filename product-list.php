@@ -14,13 +14,15 @@ get_header();
     <p class="subtitle">
       在 130+ 個國家裡尋找最適合的方案享受高速上網，工作旅遊兩不誤
     </p>
-  </div>
-  <div class="search-wrapper" id="search-wrapper">
+    <div class="search-wrapper" id="search-wrapper">
     <span class="search-icon">🔍</span>
     <input type="text" id="countryInput" placeholder="搜尋目的地">
     <div id="result-box">旅行目的地</div>
   </div>
+  </div>
+ 
   <!--搜尋結果-->
+
   <div class="product-list full-width-mode">
   <?php if (!empty($_GET['country'])): ?>
 <div id="result-output" style="display:none;">
@@ -89,7 +91,6 @@ get_header();
   ?>
 </div>
 <?php endif; ?>
-</div>
 </div>
 </section>
 <?php
