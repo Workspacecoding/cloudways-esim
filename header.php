@@ -39,7 +39,7 @@
       <a href="#">支援的裝置</a>
       <a href="#">部落格</a>
       <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
-      <a href="#">常見問題</a>
+      <a href="<?php echo home_url('/question'); ?>">常見問題</a>
       <a href="#" class="guidance-link"><span class="icon-user"></span>註冊/登入</a>
 <a href="#" class="icon-link" data-icon="cart"></a>
     </nav>
@@ -60,7 +60,7 @@
       <a href="#">支援的裝置</a>
       <a href="#">部落格</a>
       <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
-      <a href="#">常見問題</a>
+      <a href="<?php echo home_url('/question'); ?>">常見問題</a>
       <a class="btn-mobile full-width" href="<?php echo home_url('/product-list'); ?>">旅遊目的地</a>
     </div>
   </div>

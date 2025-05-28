@@ -1,0 +1,33 @@
+/* 產品圖片的圓角與陰影效果 */
+.ct-product-gallery-container img.wp-post-image {
+    border-radius: 30px;
+    object-fit: cover;
+    width: 615px;
+    height: 590px;
+
+  }
+  
+  /* 圖片容器居中顯示 */
+  .ct-media-container {
+    display: flex;
+    justify-content: center;
+    padding: 0rem;
+ 
+  }
+
+  .product_meta {
+    display: none !important;
+  }
+  
+  .single-product h1.product_title.entry-title {
+    display: none !important;
+  }
+
+  .ct-product-divider {
+    display: none !important;
+  }
+  
+.test{
+
+    border:3px solid #000;
+}

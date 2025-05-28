@@ -25,6 +25,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('component-style', $uri . '/assets/css/component.css', [], filemtime($dir . '/assets/css/component.css'));
     
 });
+
 ?>
 
 <?php endif; ?>
