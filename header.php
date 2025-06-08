@@ -38,7 +38,10 @@
       <a href="#">部落格</a>
       <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
       <a href="<?php echo home_url('/question'); ?>">常見問題</a>
-      <a href="<?php echo home_url('/my-account');?>" class="guidance-link"><span class="icon-user"></span>註冊/登入</a>
+      <a href="<?php echo home_url('/my-account'); ?>" class="guidance-link">
+  <span class="icon-user"></span>
+  <?php echo is_user_logged_in() ? '會員中心' : '註冊/登入'; ?>
+</a>
 <a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart"></a>
     </nav>
   </div>
@@ -51,7 +54,11 @@
     </div>
     <div class="mobile-menu-body">
 <!-- HTML -->
-<a href="<?php echo home_url('/my-account');?>" class="guidance-link"><span class="icon-user-mobile"></span>註冊/登入</a>
+<a href="<?php echo home_url('/my-account'); ?>" class="guidance-link">
+  <span class="icon-user-mobile"></span>
+  <?php echo is_user_logged_in() ? '會員中心' : '註冊/登入'; ?>
+</a>
+
 
 <a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart">購物車</a>
       <a href="#">什麼是eSIM</a>
