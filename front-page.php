@@ -53,7 +53,7 @@ if ($query->have_posts()) {
                 $decoded_key = urldecode(str_replace('attribute_', '', $encoded_key));
 
                 // ✅ 條件：屬性名稱為 pa_天 且值為 1
-                if ($decoded_key === 'pa_天' && trim((string)$value) === '1') {
+                if ($decoded_key === 'pa_days' && trim((string)$value) === '1') {
                     $image_id = $variation->get_image_id() ?: $product->get_image_id();
                     $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
 
@@ -355,7 +355,7 @@ if ($image): ?>
     <div class="refer-text">
       <h2><?php the_field('discount_title'); ?></h2>
       <p><?php the_field('discount_text'); ?></p>
-      <a href="#" class="refer-btn">看更多資訊</a>
+      <a href="<?php echo home_url('/referra'); ?>" class="refer-btn">看更多資訊</a>
     </div>
   </div>
 </section>
@@ -400,7 +400,7 @@ if ($image): ?>
             $decoded_key = urldecode(str_replace('attribute_', '', $encoded_key));
 
             // ✅ 條件：屬性 pa_天 = 1
-            if ($decoded_key === 'pa_天' && trim((string)$value) === '1') {
+            if ($decoded_key === 'pa_days' && trim((string)$value) === '1') {
               $image = wp_get_attachment_url($variation->get_image_id()) ?: wp_get_attachment_url($product->get_image_id());
               $price = $variation->get_price();
               $link  = get_permalink($variation->get_id());
@@ -432,6 +432,9 @@ if ($image): ?>
   ?>
 </div>
 <?php endif; ?>
+
+
+
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
 

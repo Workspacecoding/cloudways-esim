@@ -16,9 +16,7 @@
 </head>
 
 <body <?php body_class(); ?> <!--✅ 補上 body -->
-<div class="banner">
-    <b>出國上網不用怕破費！</b> 支援全球130+國家，每GB只要 US$1.59，划算到不行～<a href="#">立即購買 <span class="arrow">→</span></a>
-</div>
+
 
 
 <header class="site-header">

@@ -22,8 +22,6 @@ get_header();
   </div>
  
   <!--搜尋結果-->
-
-  <div class="product-list full-width-mode">
   <?php if (!empty($_GET['country'])): ?>
 <div id="result-output" style="display:none;">
   <?php
@@ -31,60 +29,66 @@ get_header();
   $found = false;
 
   $args = [
-    'post_type' => 'product',
+    'post_type'      => 'product',
     'posts_per_page' => -1,
-    'post_status' => 'publish',
-    'tax_query' => [
+    'post_status'    => 'publish',
+    'tax_query'      => [
       [
         'taxonomy' => 'product_cat',
-        'field' => 'slug',
-        'terms' => ['sim卡','eSIM'],
+        'field'    => 'slug',
+        'terms'    => ['sim卡', 'eSIM'],
       ]
     ]
   ];
 
   $query = new WP_Query($args);
 
-  while ($query->have_posts()) {
-    $query->the_post();
-    $product = wc_get_product(get_the_ID());
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $product = wc_get_product(get_the_ID());
 
-    if (stripos($product->get_name(), $keyword) === false) continue;
+      // 只處理名稱包含國家關鍵字的商品
+      if (stripos($product->get_name(), $keyword) === false) continue;
 
-    if ($product->is_type('variable')) {
-      foreach ($product->get_available_variations() as $variation_data) {
-        $variation = wc_get_product($variation_data['variation_id']);
-        $vname = $variation->get_name();
+      // 只處理變數商品
+      if ($product->is_type('variable')) {
+        foreach ($product->get_available_variations() as $variation_data) {
+          $variation = wc_get_product($variation_data['variation_id']);
+          if (!$variation) continue;
 
-        if (
-          stripos($vname, '1G') !== false &&
-          stripos($vname, '3天') !== false
-        ) {
-          $image = wp_get_attachment_url($variation->get_image_id());
-          $price = $variation->get_price();
-          $found = true;
-          $link = get_permalink($variation->get_id());
-          echo '<h4 class="dropdown-title">旅行目的地</h4>';
+          $attributes = $variation->get_attributes();
 
-          echo '<a href="' . esc_url($link) . '" target="_blank" class="result-item">';
-          echo '<img src="' . esc_url($image) . '" alt="圖">';
-          
-          echo '<div class="info">';
-          echo '<div class="name">' . esc_html($product->get_name()) . '</div>';
-          echo '<div class="price">NTD ' . esc_html($price) . ' 起</div>';
-          echo '</div>'; // .info
-          
-          echo '</a>'; // .result-item
-          
+          foreach ($attributes as $encoded_key => $value) {
+            $decoded_key = urldecode(str_replace('attribute_', '', $encoded_key));
 
-          break 2; // 找到就不繼續其他商品
+            // ✅ 條件：屬性 pa_天 = 1
+            if ($decoded_key === 'pa_days' && trim((string)$value) === '1') {
+              $image = wp_get_attachment_url($variation->get_image_id()) ?: wp_get_attachment_url($product->get_image_id());
+              $price = $variation->get_price();
+              $link  = get_permalink($variation->get_id());
+              $found = true;
+
+              // 輸出結果
+              echo '<h4 class="dropdown-title">旅行目的地</h4>';
+              echo '<a href="' . esc_url($link) . '" target="_blank" class="result-item">';
+              echo '<img src="' . esc_url($image) . '" alt="圖">';
+              echo '<div class="info">';
+              echo '<div class="name">' . esc_html($product->get_name()) . '</div>';
+              echo '<div class="price">NTD ' . esc_html($price) . ' 起</div>';
+              echo '</div>'; // .info
+              echo '</a>';   // .result-item
+
+              break 3; // 找到後跳出三層（attribute → variation → product）
+            }
+          }
         }
       }
     }
+    wp_reset_postdata();
   }
 
-  wp_reset_postdata();
-
+  // 沒找到任何符合的商品
   if (!$found) {
     echo '<p>❌ 沒有找到相關商品。</p>';
   }
@@ -125,7 +129,7 @@ if ($query->have_posts()) {
                 $decoded_key = urldecode(str_replace('attribute_', '', $encoded_key));
 
                 // ✅ 抓「屬性名稱為 pa_天」且值為 1 的變體
-                if ($decoded_key === 'pa_天' && trim((string)$value) === '1') {
+                if ($decoded_key === 'pa_days' && trim((string)$value) === '1') {
                     $image_id = $variation->get_image_id() ?: $product->get_image_id();
                     $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
 
