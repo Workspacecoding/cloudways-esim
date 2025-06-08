@@ -94,56 +94,59 @@ get_header();
 </div>
 </section>
 <?php
-// 額外顯示所有 G數 = 1G 的變體
 $matched = [];
 
 $args = [
-  'post_type'      => 'product',
-  'posts_per_page' => -1,
-  'post_status'    => 'publish',
-  'orderby'        => 'menu_order',
-  'order'          => 'ASC',
+    'post_type'      => 'product',
+    'posts_per_page' => -1,
+    'post_status'    => 'publish',
+    'orderby'        => 'menu_order',
+    'order'          => 'ASC',
 ];
 
 $query = new WP_Query($args);
 
 if ($query->have_posts()) {
-  while ($query->have_posts()) {
-    $query->the_post();
-    $product = wc_get_product(get_the_ID());
+    while ($query->have_posts()) {
+        $query->the_post();
+        $product = wc_get_product(get_the_ID());
+        if (!$product || !$product->is_type('variable')) continue;
 
-    if (!$product || !$product->is_type('variable')) continue;
+        $variations = $product->get_available_variations();
 
-    foreach ($product->get_available_variations() as $variation_data) {
-      $variation = wc_get_product($variation_data['variation_id']);
-      if (!$variation) continue;
+        foreach ($variations as $variation_data) {
+            $variation_id = $variation_data['variation_id'];
+            $variation = wc_get_product($variation_id);
+            if (!$variation) continue;
 
-      $attributes = $variation->get_attributes();
-      foreach ($attributes as $name => $value) {
-        $decoded_name = urldecode(str_replace('attribute_', '', $name));
-        $decoded_name_lower = strtolower(trim($decoded_name));
+            $attributes = $variation->get_attributes();
 
-        if ($decoded_name_lower === 'g數' && trim($value) === '1G') {
-          $image_id = $variation->get_image_id() ?: $product->get_image_id();
-          $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+            foreach ($attributes as $encoded_key => $value) {
+                $decoded_key = urldecode(str_replace('attribute_', '', $encoded_key));
 
-          $matched[] = [
-            '商品名稱' => $product->get_name(),
-            '變體ID'   => $variation->get_id(),
-            '價格'     => $variation->get_price(),
-            '圖片'     => $image_url,
-            '屬性'     => $attributes,
-          ];
-          break; // 找到一組 1G 就跳出變體層
+                // ✅ 抓「屬性名稱為 pa_天」且值為 1 的變體
+                if ($decoded_key === 'pa_天' && trim((string)$value) === '1') {
+                    $image_id = $variation->get_image_id() ?: $product->get_image_id();
+                    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+
+                    $matched[] = [
+                        '商品名稱' => $product->get_name(),
+                        '價格'     => $variation->get_price(),
+                        '變體ID'   => $variation_id,
+                        '連結'     => get_permalink($product->get_id()),
+                        '圖片'     => $image_url,
+                    ];
+
+                    break 2;
+                }
+            }
         }
-      }
     }
-  }
-  wp_reset_postdata();
+    wp_reset_postdata();
 }
 ?>
 
-<!-- 輸出 G數 = 1G 的商品卡片（滿版樣式） -->
+<!-- 輸出天數=1的商品卡片（滿版樣式） -->
 <div class="country-list full-width-mode">
   <?php
   if (!empty($matched)) {
@@ -171,7 +174,7 @@ if ($query->have_posts()) {
     }
     echo '</div>';
   } else {
-    echo '<p>⚠️ 沒有找到 G數 = 1G 的變體。</p>';
+    echo '<p>相關商品</p>';
   }
   ?>
 </div>

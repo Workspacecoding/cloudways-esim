@@ -482,7 +482,7 @@
 
   
   /* ---------- 手機版 RWD ---------- */
-  @media (max-width: 912px) {
+  @media (max-width: 990px) {
     .feature-block {
       flex-direction: column;
       text-align: left; /* 保持段落對齊 */

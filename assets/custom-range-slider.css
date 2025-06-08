@@ -1,0 +1,139 @@
+    /* 完整UI樣式 */
+    .esim-days-selector {
+        max-width: 550px;
+        margin: 30px 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    
+    /* 標題樣式 */
+    .slider-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 25px;
+    }
+    
+    /* 滑塊容器 */
+    .slider-container {
+        position: relative;
+        margin-bottom: 30px;
+    }
+    
+    /* 滑塊軌道 */
+    .slider-track {
+        position: relative;
+        height: 8px;
+        background-color: #e8e8e8;
+        border-radius: 4px;
+        margin: 16px 0;
+    }
+    
+    /* 滑塊進度 */
+    .slider-progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background-color: #00483d;
+        border-radius: 4px 0 0 4px;
+    }
+    
+    /* 範圍輸入 */
+    #days-input {
+        position: absolute;
+        top: 1rem;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 3;
+    }
+    
+    /* 自定義手柄 - 直接覆蓋在軌道上 */
+    .handle-display {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #a7f9e0;
+        transform: translate(-50%, -50%);
+        border: 2px solid white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        pointer-events: none;
+    }
+    
+    .handle-display span {
+        color: #00483d;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    /* 刻度標記 */
+    .slider-marks {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    /* 總計區域 */
+    .total-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        margin-top:3rem;
+
+    }
+    
+    .total-label {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+    }
+    
+    .total-price {
+        font-size: 17px;
+        font-weight: 600;
+        color: #222;
+    }
+    
+    /* 購買按鈕 */
+    .buy-button {
+
+        background-color: #c43e27;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 14px 0;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.1s;
+
+    }
+    
+    
+    .buy-button:hover {
+        background-color: #b03623;
+    }
+    
+    .button-active {
+        transform: scale(0.98);
+        background-color: #a83320;
+    }
+    
+    /* 禁用WooCommerce默認價格顯示 */
+    .woocommerce-variation-price {
+        display: none !important;
+    }

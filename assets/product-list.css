@@ -44,18 +44,27 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 1rem;
-    padding: 1rem 2rem;
+    gap: 1rem ; /* 預設欄距 */
+    padding: 1rem 0rem 1rem 2rem;
     max-width: 1250px;
     margin: 0 auto;
-    
   }
   
 
 
   /*RWD*/
+  @media (min-width: 1280px) {
+    .country-list.full-width-mode {
+     
+      row-gap: 1rem;     /* ⬅️ 保持上下間距不變 */
+    }
+    .country-list.full-width-mode.country-list .row {
+      gap:8rem;
 
-
+    }
+   
+  }
+ 
   @media (max-width: 990px) {
 
     .country-list.full-width-mode {
@@ -63,13 +72,14 @@
       flex-wrap: wrap;
       justify-content: flex-start;
       gap: 1rem;
-      padding: 1rem 6rem;
-      max-width: 1250px;
-      margin: 0 auto;
+      padding: 1rem 4rem;
+      max-width:1250px;
+     margin:auto;
     }
 
+
     .search-destination {
-      margin-left:2rem;
+      margin-left:0rem;
       margin-top:0;
     }
 
@@ -88,14 +98,12 @@
     margin-left:0rem;
 }
 
-
 .country-list.full-width-mode {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 1rem;
   padding: 1rem 4rem;
-  max-width: 1250px;
-  margin: 0 auto;
+margin-left:-1rem;
 }
   }

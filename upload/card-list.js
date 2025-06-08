@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".country-card");
   
     function updateDisplay() {
-      const isMobile = window.innerWidth <= 890;
+      const isMobile = window.innerWidth <= 990;
   
       cards.forEach((card, idx) => {
         if (isMobile && idx >= 4) {

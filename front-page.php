@@ -21,15 +21,14 @@
   <h2>計劃去哪裡 <span class="highlight">旅行？</span></h2>
   <p>選擇你的 eSIM 隨時享受順暢網速</p>
 
-<?php
-$matched = []; // 儲存符合條件的變體資訊
-$limit = 9;    // 最多取幾筆
+  <?php
+$matched = [];
 
 $args = [
     'post_type'      => 'product',
     'posts_per_page' => -1,
     'post_status'    => 'publish',
-    'orderby'        => 'menu_order', // ✅ 套用 WooCommerce 後台排序
+    'orderby'        => 'menu_order',
     'order'          => 'ASC',
 ];
 
@@ -38,56 +37,49 @@ $query = new WP_Query($args);
 if ($query->have_posts()) {
     while ($query->have_posts()) {
         $query->the_post();
-        $product_id = get_the_ID();
-        $product = wc_get_product($product_id);
-
-        if (!$product || !$product->is_type('variable')) {
-            continue;
-        }
+        $product = wc_get_product(get_the_ID());
+        if (!$product || !$product->is_type('variable')) continue;
 
         $variations = $product->get_available_variations();
-        if (!is_array($variations)) {
-            continue;
-        }
 
         foreach ($variations as $variation_data) {
             $variation_id = $variation_data['variation_id'];
             $variation = wc_get_product($variation_id);
-
-            if (!$variation) {
-                continue;
-            }
+            if (!$variation) continue;
 
             $attributes = $variation->get_attributes();
-            foreach ($attributes as $name => $value) {
-                $decoded_name = urldecode(str_replace('attribute_', '', $name));
-                $decoded_name_lower = strtolower(trim($decoded_name));
 
-                if ($decoded_name_lower === 'g數' && trim($value) === '1G') {
-                    // 圖片抓變體圖 → fallback 主圖
+            foreach ($attributes as $encoded_key => $value) {
+                $decoded_key = urldecode(str_replace('attribute_', '', $encoded_key));
+
+                // ✅ 條件：屬性名稱為 pa_天 且值為 1
+                if ($decoded_key === 'pa_天' && trim((string)$value) === '1') {
                     $image_id = $variation->get_image_id() ?: $product->get_image_id();
                     $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
 
                     $matched[] = [
                         '商品名稱' => $product->get_name(),
-                        '變體ID'   => $variation_id,
                         '價格'     => $variation->get_price(),
+                        '變體ID'   => $variation_id,
+                        '連結'     => get_permalink($product->get_id()),
                         '圖片'     => $image_url,
-                        '屬性'     => $attributes,
                     ];
 
-                    break 2; // 已找到一個，跳出
-                }
-            }
+                    // ✅ 最多只抓 9 筆
+                    if (count($matched) >= 9) {
+                        break 3; // 跳出屬性、變體、產品層迴圈
+                    }
 
-            if (count($matched) >= $limit) {
-                break 2;
+                    break; // 跳出屬性層
+                }
             }
         }
     }
     wp_reset_postdata();
 }
 ?>
+
+
 
 <!--輸出結果-->
 <div class="country-list">
@@ -119,7 +111,7 @@ if ($query->have_posts()) {
       }
       echo '</div>'; // 關掉最後一列
     } else {
-      echo '<p>⚠️ 沒有找到 G數 = 1G 的變體。</p>';
+      echo '<p>⚠️ 沒有找到相關商品</p>';
     }
   ?>
 </div>
@@ -374,78 +366,72 @@ if ($image): ?>
   $found = false;
 
   $args = [
-    'post_type' => 'product',
+    'post_type'      => 'product',
     'posts_per_page' => -1,
-    'post_status' => 'publish',
-    'tax_query' => [
+    'post_status'    => 'publish',
+    'tax_query'      => [
       [
         'taxonomy' => 'product_cat',
-        'field' => 'slug',
-        'terms' => ['sim卡','eSIM'],
+        'field'    => 'slug',
+        'terms'    => ['sim卡', 'eSIM'],
       ]
     ]
   ];
 
   $query = new WP_Query($args);
 
-  while ($query->have_posts()) {
-    $query->the_post();
-    $product = wc_get_product(get_the_ID());
+  if ($query->have_posts()) {
+    while ($query->have_posts()) {
+      $query->the_post();
+      $product = wc_get_product(get_the_ID());
 
-    if (stripos($product->get_name(), $keyword) === false) continue;
+      // 只處理名稱包含國家關鍵字的商品
+      if (stripos($product->get_name(), $keyword) === false) continue;
 
-    if ($product->is_type('variable')) {
-      foreach ($product->get_available_variations() as $variation_data) {
-        $variation = wc_get_product($variation_data['variation_id']);
-        $vname = $variation->get_name();
+      // 只處理變數商品
+      if ($product->is_type('variable')) {
+        foreach ($product->get_available_variations() as $variation_data) {
+          $variation = wc_get_product($variation_data['variation_id']);
+          if (!$variation) continue;
 
-        if (
-          stripos($vname, '1G') !== false &&
-          stripos($vname, '3天') !== false
-        ) {
-          $image = wp_get_attachment_url($variation->get_image_id());
-          $price = $variation->get_price();
-          $found = true;
-          $link = get_permalink($variation->get_id());
-          echo '<h4 class="dropdown-title">旅行目的地</h4>';
+          $attributes = $variation->get_attributes();
 
-          echo '<a href="' . esc_url($link) . '" target="_blank" class="result-item">';
-          echo '<img src="' . esc_url($image) . '" alt="圖">';
-          
-          echo '<div class="info">';
-          echo '<div class="name">' . esc_html($product->get_name()) . '</div>';
-          echo '<div class="price">NTD ' . esc_html($price) . ' 起</div>';
-          echo '</div>'; // .info
-          
-          echo '</a>'; // .result-item
-          
+          foreach ($attributes as $encoded_key => $value) {
+            $decoded_key = urldecode(str_replace('attribute_', '', $encoded_key));
 
-          break 2; // 找到就不繼續其他商品
+            // ✅ 條件：屬性 pa_天 = 1
+            if ($decoded_key === 'pa_天' && trim((string)$value) === '1') {
+              $image = wp_get_attachment_url($variation->get_image_id()) ?: wp_get_attachment_url($product->get_image_id());
+              $price = $variation->get_price();
+              $link  = get_permalink($variation->get_id());
+              $found = true;
+
+              // 輸出結果
+              echo '<h4 class="dropdown-title">旅行目的地</h4>';
+              echo '<a href="' . esc_url($link) . '" target="_blank" class="result-item">';
+              echo '<img src="' . esc_url($image) . '" alt="圖">';
+              echo '<div class="info">';
+              echo '<div class="name">' . esc_html($product->get_name()) . '</div>';
+              echo '<div class="price">NTD ' . esc_html($price) . ' 起</div>';
+              echo '</div>'; // .info
+              echo '</a>';   // .result-item
+
+              break 3; // 找到後跳出三層（attribute → variation → product）
+            }
+          }
         }
       }
     }
+    wp_reset_postdata();
   }
 
-  wp_reset_postdata();
-
+  // 沒找到任何符合的商品
   if (!$found) {
     echo '<p>❌ 沒有找到相關商品。</p>';
   }
   ?>
 </div>
 <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
 </main>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/card-list.js" defer></script>
 
