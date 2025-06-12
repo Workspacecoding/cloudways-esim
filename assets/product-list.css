@@ -59,11 +59,29 @@
       row-gap: 1rem;     /* ⬅️ 保持上下間距不變 */
     }
     .country-list.full-width-mode.country-list .row {
-      gap:8rem;
+      gap:2rem;
+
+    }
+    .country-list.full-width-mode.country-list .row .country-card{
+        display: flex;
+        flex: 1 1 calc(33.333% - 1rem); /* 三欄 */
+        background: #160f0f;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.05);
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 16px 20px;
+        width: 380px;
+        transition: box-shadow 0.3s;
+      }
 
     }
    
-  }
+  
  
   @media (max-width: 990px) {
 
@@ -74,7 +92,8 @@
       gap: 1rem;
       padding: 1rem 4rem;
       max-width:1250px;
-     margin:auto;
+     margin:0 auto;
+     margin-left: -10rem
     }
 
 

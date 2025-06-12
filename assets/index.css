@@ -1,7 +1,7 @@
 
   
 .hero {
-  height: 50rem; /* ✅ 自己指定固定高度 */
+  height: 30rem; /* ✅ 自己指定固定高度 */
   padding: 40px 20px;
   background: linear-gradient(to bottom right, rgba(220, 237, 252, 0.5), #ffffff);
   display: flex; /* ✅ 保持置中不脫離文流 */
@@ -14,7 +14,7 @@
 .hero-content {
   max-width: 60rem;
   width: 100%;
-  margin-top:-15rem; /* ✅ 千萬不要用負值！ */
+  margin-top:0; /* ✅ 千萬不要用負值！ */
   position: static; /* ✅ 不要用 absolute */
 }
   
@@ -341,8 +341,13 @@
   /*特色CSS*/
   .feature-section {
     max-width: 1250px;
-    margin: 0 auto;
-    padding: 40px 20px;
+    margin-top:5rem;
+    padding: 40px 30px;
+  }
+  .feature-section2{
+    max-width: 1250px;
+    margin-top:3rem;
+    padding: 40px 30px;
   }
   
   .feature-block {
@@ -356,15 +361,13 @@
   
    /* 如果是 reverse 區塊 高度不同 */
    .feature-block.reverse {
-    margin: clamp(-1rem, 3vw, -3rem) 0 clamp(2rem, 3vw, 6rem) 0;
-
-
+    margin-top:8rem;
    }
 /* 如果是 third 區塊 高度不同 */
 
 
 .feature-block.third {
-  margin: clamp(3rem, 8vw, 10rem) 0 clamp(3rem, 8vw, 6rem) 0;
+  margin-top:8rem;
 
 
  }
@@ -398,6 +401,16 @@
 
 }
 
+.circle-wrapper {
+  width: 120px;         /* ⬅️ 你可以調整這裡改變圓的大小 */
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f5f5f5; /* 可選：避免圖片沒載入時是白色空框 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .feature-img img {
   max-width: 100%;
@@ -617,7 +630,7 @@
 
 .benefit-container {
   max-width: 1250px;
-  margin: -1rem auto;
+  margin: -1rem 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(1rem, 3vw, 2rem);
@@ -635,8 +648,20 @@
   width: 48px;
   height: 48px;
   margin-bottom: 1rem;
+  overflow: hidden;       /* ⬅️ 裁切超出圖片 */
+  border-radius: 8px;     /* ⬅️ 可選：讓它變圓角或圓形 */
+  display: flex;          /* ⬅️ 讓內容可以置中 */
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5; /* ⬅️ 可選：給圖片載入前有底色 */
 }
 
+.benefit-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* ⬅️ 關鍵！裁切並填滿 */
+  display: block;
+}
 .benefit-item h3 {
   font-size: 1.5rem;
   font-weight: 600;
@@ -657,6 +682,7 @@
   font-size: 0.95rem;
   color: #3c6ff8;
   font-weight: 600;
+  margin-top: auto;
 }
 
 /* 手機版 RWD */
@@ -683,7 +709,7 @@
 /*客戶介紹*/
 
 .refer-section {
-  padding: clamp(2rem, 6vw, 4rem) 1rem;
+  padding: clamp(2rem, 6vw, 4rem) 2rem;
   background-color: #fff;
 }
 
@@ -693,7 +719,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  flex-wrap:nowrap;;
+  flex-wrap:nowrap;
   max-width: 1250px;
   margin: 0 auto;
   gap: clamp(2rem, 5vw, 4rem);
@@ -710,8 +736,9 @@
   max-width: 500px;
   height: auto;
   display: block;
-  margin: 0 auto;
+  margin: 0 0 0 0rem;
 }
+
 
 
 
@@ -767,6 +794,13 @@
     padding-right:0rem;
   }
 
+  .refer-main-img {
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin:0 auto;
+  }
 }
 
 
@@ -782,6 +816,5 @@
     font-size: 1.25rem;
   }
 
-  .search-box,
-  #search-wrapper {
-    max-width:
+
+}

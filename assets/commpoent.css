@@ -224,7 +224,7 @@
 
 .country-section {
   max-width: 1250px;
-  margin: -15rem auto 0;
+  margin: 0 auto;
   padding: 40px 20px;
   text-align: center;
   justify-content: center;
@@ -250,6 +250,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  margin-top:5rem;
 }
 .country-list .row {
   display: flex;
@@ -342,7 +343,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top:5rem;
 }
 
 .country-button {

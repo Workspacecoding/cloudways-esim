@@ -139,7 +139,7 @@ if ($query->have_posts()) {
   <h2 class="main-title">線上開通旅行連線不中斷</h2>
   <p class="sub-title">從出發到回家，走到哪連到哪，安心上網不中斷</p>
 </section>
-<section class="feature-section">
+<section class="feature-section2">
   <div class="feature-block">
     <!-- 圖片放在 HTML 後面，透過 RWD 控制順序 -->
     <div class="feature-text">
@@ -159,6 +159,7 @@ if ($query->have_posts()) {
 $image = get_field('feature_img1'); // 這裡改成你的欄位名稱
 if ($image): ?>
   <div class="feature-img">
+
     <img src="<?php echo esc_url($image['url']); ?>"
          alt="<?php echo esc_attr($image['alt']); ?>">
   </div>
@@ -184,6 +185,7 @@ if ($image): ?>
 $image = get_field('feature_img2'); // 這裡改成你的欄位名稱
 if ($image): ?>
   <div class="feature-img">
+
     <img src="<?php echo esc_url($image['url']); ?>"
          alt="<?php echo esc_attr($image['alt']); ?>">
   </div>
@@ -227,14 +229,14 @@ if ($image): ?>
       <h3>為旅程購買eSIM方案</h3>
       <p>選擇旅行目的地，並選擇上網方案</p>
       <!-- 你可以加選項按鈕、國旗、單位等 -->
-      <?php echo wp_get_attachment_image(134, 'medium', false, ['class' => 'step-image']); ?>
+      <?php echo wp_get_attachment_image(1225, 'medium', false, ['class' => 'step-image']); ?>
     </div>
 
     <div class="step-box">
       <div class="step-number">2</div>
       <h3>掃描QRcode設訂eSIM</h3>
       <p>根據電子郵件說明設定eSIM</p>
-      <?php echo wp_get_attachment_image(131, 'medium', false, ['class' => 'step-image']); ?>
+      <?php echo wp_get_attachment_image(1224, 'medium', false, ['class' => 'step-image']); ?>
       <!-- 放上 QRCode 圖片 -->
     </div>
 
@@ -243,7 +245,7 @@ if ($image): ?>
       <h3>享受eSIM方案</h3>
       <p>方案會於抵達旅行目的地後啟用</p>
       <!-- 放上 Wi-Fi 圖標等圖片 -->
-      <?php echo wp_get_attachment_image(135, 'medium', false, ['class' => 'step-image']); ?>
+      <?php echo wp_get_attachment_image(1217, 'medium', false, ['class' => 'step-image']); ?>
     </div>
 
   </div>
