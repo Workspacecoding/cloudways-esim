@@ -32,7 +32,7 @@
 
     <!-- ✅ 桌機版選單 -->
     <nav class="nav-desktop">
-      <a class="btn-desktop" href="<?php echo home_url('/product-list'); ?>"><span>旅遊目的地</span></a>
+      <a class="btn-desktop" href="<?php echo home_url('/destinations'); ?>"><span>旅遊目的地</span></a>
       <a href="#">什麼是eSIM</a>
       <a href="#">支援的裝置</a>
       <a href="#">部落格</a>
@@ -66,7 +66,7 @@
       <a href="#">部落格</a>
       <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
       <a href="<?php echo home_url('/question'); ?>">常見問題</a>
-      <a class="btn-mobile full-width" href="<?php echo home_url('/product-list'); ?>">旅遊目的地</a>
+      <a class="btn-mobile full-width" href="<?php echo home_url('/destinations'); ?>">旅遊目的地</a>
     </div>
   </div>
   <script src="<?php echo get_stylesheet_directory_uri(); ?>/upload/menu.js"></script>
