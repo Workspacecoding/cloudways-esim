@@ -1,0 +1,38 @@
+.two-column {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .text-block {
+    flex: 1 1 50%;
+    min-width: 280px;
+  }
+  
+  .image-block {
+    position: relative;
+    flex: 1 1 45%;
+    min-width: 240px;
+    text-align: right;  /* ✅ 靠右對齊 */
+  }
+  
+  .image-block img {
+    width: 120%;        /* ✅ 比容器大一點 */
+    margin-right: -100px;  /* ✅ 往右跳出 container */
+    max-width: none;
+  }
+
+.elementor-editable-block{
+    margin-top:-5rem;
+}
+
+  /*RWD*/
+  @media (max-width: 890px) {
+    .image-block {
+      display: none;
+    }
+  }
+  
+  

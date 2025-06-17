@@ -33,9 +33,9 @@
     <!-- ✅ 桌機版選單 -->
     <nav class="nav-desktop">
       <a class="btn-desktop" href="<?php echo home_url('/destinations'); ?>"><span>旅遊目的地</span></a>
-      <a href="#">什麼是eSIM</a>
-      <a href="#">支援的裝置</a>
-      <a href="#">部落格</a>
+      <a href="<?php echo home_url('/what-is-esim'); ?>">什麼是eSIM</a>
+      <a href="<?php echo home_url('/esim-phones'); ?>">支援的裝置</a>
+      <a href="<?php echo home_url('/blog'); ?>">部落格</a>
       <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
       <a href="<?php echo home_url('/question'); ?>">常見問題</a>
       <a href="<?php echo home_url('/my-account'); ?>" class="guidance-link">
@@ -61,9 +61,9 @@
 
 
 <a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart">購物車</a>
-      <a href="#">什麼是eSIM</a>
-      <a href="#">支援的裝置</a>
-      <a href="#">部落格</a>
+      <a href="<?php echo home_url('/what-is-esim'); ?>">什麼是eSIM</a>
+      <a href="<?php echo home_url('/esim-phones'); ?>">支援的裝置</a>
+      <a href="<?php echo home_url('/blog'); ?>">部落格</a>
       <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
       <a href="<?php echo home_url('/question'); ?>">常見問題</a>
       <a class="btn-mobile full-width" href="<?php echo home_url('/destinations'); ?>">旅遊目的地</a>
