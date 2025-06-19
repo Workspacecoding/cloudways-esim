@@ -47,54 +47,79 @@ document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("countryInput");
     const resultBox = document.getElementById("result-box");
     const wrapper = document.getElementById("search-wrapper");
-  
-    // ✅ 載入時先清空 dropdown
+
+    // ✅ 偵測幣別 (簡易版)
+    const userLang = navigator.language || navigator.userLanguage;
+    const currency = userLang.includes('zh-TW') ? 'TWD' : 'USD';
+    const currencySymbol = currency === 'TWD' ? 'NT$' : '$';
+    const exchangeRate = currency === 'TWD' ? 1 : 0.032; // 模擬 1 TWD = 0.032 USD
+
+    // ✅ 模擬資料
+    const data = [
+      {
+        name: "台灣",
+        image: "https://oceanesim.com/product/%e5%8f%b0%e7%81%a3-2/",
+        link: "https://oceanesim.com/product/%e5%8f%b0%e7%81%a3-2/",
+        price: 299
+      },
+      {
+        name: "日本",
+        image: "https://oceanesim.com/product/%e5%8f%b0%e7%81%a3-2/",
+        price: 399
+      },
+      {
+        name: "韓國",
+        image: "https://via.placeholder.com/100x100.png?text=Korea",
+        price: 359
+      }
+    ];
+
     input.addEventListener("input", function () {
-      const keyword = input.value.trim();
+      const keyword = input.value.trim().toLowerCase();
       if (!keyword) {
         resultBox.innerHTML = '';
         resultBox.style.display = 'none';
         return;
       }
-    
-      // Optional: 顯示 loading 狀態
-      resultBox.innerHTML = '<p style="padding:10px;">🔍 查詢中...</p>';
-      resultBox.style.display = 'block';
-    
-      fetch(window.location.href.split('?')[0] + '?country=' + encodeURIComponent(keyword))
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const output = doc.querySelector('#result-output');
-          if (output) {
-            resultBox.innerHTML = output.innerHTML;
-            resultBox.style.display = 'block';
-          } else {
-            resultBox.innerHTML = '<p style="color:red;">❌ 找不到結果</p>';
-          }
-        });
-    });
-    
-  
-    // ✅ 清空輸入時，自動關閉 dropdown
-    input.addEventListener("input", function () {
-      const keyword = input.value.trim();
-      if (!keyword) {
-        resultBox.innerHTML = '';
-        resultBox.style.display = 'none';
+      const matched = data.filter(item => item.name.toLowerCase().includes(keyword));
+      console.log("Matched:", matched);
+      
+      if (matched.length === 0) {
+        resultBox.innerHTML = '<div class="result-item">❌ 找不到結果</div>';
+        resultBox.style.display = 'block';
+      } else {
+        const displayResults = matched.map(item => {
+          const displayPrice = Math.round(item.price * exchangeRate);
+          return `
+          <a class="result-item" href="${item.link}" target="_blank">
+              <img src="${item.image}" alt="${item.name}">
+              <div>
+              <div class="info">
+              <div class="name">${item.name}</div>
+              </div>
+            </div>
+            </div>
+          `;
+        }).join('');
+      
+        resultBox.innerHTML = `
+          <h4 class="dropdown-title">旅行目的地</h4>
+          ${displayResults}
+        `;
+        resultBox.style.display = 'block'; // ✅ 要保證可見
       }
+      
+
+      resultBox.style.display = 'block';
     });
-  
-    // ✅ 點擊外部自動關閉 dropdown
+
+    // 點擊外部關閉下拉
     document.addEventListener("click", function (e) {
       if (!wrapper.contains(e.target)) {
-        resultBox.innerHTML = '';
-        resultBox.style.display = 'none';
+        resultBox.style.display = "none";
       }
     });
   });
-
 
 
 
