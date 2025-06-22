@@ -131,6 +131,7 @@
     display: none;
     border-radius: 16px;
     height:9.5rem;
+    overflow-y: auto;
   }
   
   /* Dropdown 卡片樣式 */

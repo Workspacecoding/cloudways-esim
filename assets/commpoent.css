@@ -61,12 +61,25 @@
 
 /* �� Header �詨鱓�� */
 .site-header {
-  border-bottom: 1px solid #ddd;
-  padding: 1rem 3rem;
   position: relative;
-  margin:0 auto;
+  padding: 1rem 3rem;
+  margin: 0 auto;
   max-width: 1250px;
+  z-index: 1; /* 確保壓在上層 */
 }
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background-color: #ddd;
+  z-index: -1;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;

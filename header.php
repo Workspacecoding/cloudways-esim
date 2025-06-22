@@ -43,6 +43,7 @@
   <?php echo is_user_logged_in() ? '會員中心' : '註冊/登入'; ?>
 </a>
 <a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart"></a>
+
     </nav>
   </div>
 
