@@ -43,6 +43,8 @@
   <?php echo is_user_logged_in() ? '會員中心' : '註冊/登入'; ?>
 </a>
 <a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart"></a>
+<?php echo do_shortcode('[woocs sd=1]'); ?>
+
 
     </nav>
   </div>
@@ -55,12 +57,14 @@
     </div>
     <div class="mobile-menu-body">
 <!-- HTML -->
+<div class="menu-item-flex">
+  <span class="icon-currency"></span>
+  <?php echo do_shortcode('[woocs sd=1]'); ?>
+</div>
 <a href="<?php echo home_url('/my-account'); ?>" class="guidance-link">
   <span class="icon-user-mobile"></span>
   <?php echo is_user_logged_in() ? '會員中心' : '註冊/登入'; ?>
 </a>
-
-
 <a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart">購物車</a>
       <a href="<?php echo home_url('/what-is-esim'); ?>">什麼是eSIM</a>
       <a href="<?php echo home_url('/esim-phones'); ?>">支援的裝置</a>

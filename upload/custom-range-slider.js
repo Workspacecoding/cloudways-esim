@@ -1,5 +1,34 @@
 console.log('Snippets 成功注入 JS！');
 
+
+// ✅ 根據 IP 自動切換幣別（例如來自香港就自動點選 HKD）
+fetch("https://api.country.is")
+  .then(res => res.json())
+  .then(data => {
+    if (data.country === "HK") {
+      const hkdButton = document.querySelector('[data-currency="HKD"]');
+      if (hkdButton) {
+        hkdButton.click();
+        console.log('🎯 自動切換為 HKD 幣別');
+      }
+    }
+  });
+  fetch('https://ipapi.co/json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('🌐 目前 IP 資訊：');
+    console.log(`IP 位址：${data.ip}`);
+    console.log(`國家名稱：${data.country_name}`);
+    console.log(`國家代碼：${data.country}`);
+    console.log(`城市：${data.city}`);
+    console.log(`網路業者：${data.org}`);
+  })
+  .catch(error => {
+    console.warn('⚠️ 無法取得 IP 資訊：', error);
+  });
+
+
+
 jQuery(document).ready(function($) {
     setTimeout(function() {
         var $select = $('select[name="attribute_天數"]');
@@ -76,9 +105,12 @@ jQuery(document).ready(function($) {
 
         // ✅ 新版價格更新：用 variation 資料直接取得價格
         function updatePriceFromVariationObject(variation) {
-            if (variation && variation.display_price !== undefined) {
-                var formatted = variation.display_price.toLocaleString();
-                $totalPrice.text(formatted + ' TWD');
+            if (variation && variation.price_html !== undefined) {
+                // WooCommerce 已格式化過的價格 HTML
+                var html = $('<div>').html(variation.price_html);
+                var formattedText = html.text().trim(); // 例如：$399.00 或 NT$399
+               $totalPrice.html(variation.price_html); // ✅ 直接呈現 WooCommerce 格式化後的 HTML，含幣別
+
             }
         }
 
@@ -87,6 +119,11 @@ jQuery(document).ready(function($) {
             updatePriceFromVariationObject(variation);
             // 可選：移除 WooCommerce 原生價格 DOM（避免閃動）
             $('.woocommerce-variation-price').remove();
+        });
+
+        $form.on('found_variation', function(e, variation) {
+            updatePriceFromVariationObject(variation);
+            $('.woocommerce-variation-price').remove(); // 可選：避免 WooCommerce 原價顯示干擾
         });
 
         // ✅ 輸入過程即時更新滑桿 UI
