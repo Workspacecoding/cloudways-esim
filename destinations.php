@@ -88,17 +88,31 @@ if ($query->have_posts()) {
 ?>
 
 <!-- 輸出卡片 -->
+<?php
+// ✅ 取得目前頁數
+$paged = isset($_GET['paged']) ? max(1, intval($_GET['paged'])) : 1;
+
+// ✅ 每頁顯示數量
+$per_page = 9;
+
+// ✅ 計算總數
+$total_items = count($matched);
+$total_pages = ceil($total_items / $per_page);
+
+// ✅ 切分目前頁面要顯示的資料
+$paged_items = array_slice($matched, ($paged - 1) * $per_page, $per_page);
+?>
+
 <div class="country-list full-width-mode">
   <?php
-  if (!empty($matched)) {
-    foreach ($matched as $index => $item) {
-      if ($index % 3 === 0) {
-        if ($index > 0) echo '</div>';
+  if (!empty($paged_items)) {
+    foreach ($paged_items as $i => $item) {
+      if ($i % 3 === 0) {
+        if ($i > 0) echo '</div>';
         echo '<div class="row">';
       }
 
-      $parent_id = wp_get_post_parent_id($item['變體ID']);
-      $product_link = get_permalink($parent_id);
+      $product_link = get_permalink($item['變體ID']);
       ?>
       <a href="<?php echo esc_url($product_link); ?>" target="_blank" rel="noopener noreferrer" class="country-link">
         <div class="country-card">
@@ -115,10 +129,26 @@ if ($query->have_posts()) {
     }
     echo '</div>';
   } else {
-    echo '<p>沒有相關商品</p>';
+    echo '<p>找不到相關商品</p>';
   }
   ?>
 </div>
+
+<?php
+// ✅ 分頁連結（使用 query string）
+echo '<div class="pagination">';
+echo paginate_links([
+  'base' => add_query_arg('paged', '%#%'),
+  'format' => '',
+  'current' => $paged,
+  'total' => $total_pages,
+  'prev_text' => '« 上一頁',
+  'next_text' => '下一頁 »',
+  'type' => 'plain',
+]);
+echo '</div>';
+?>
+
 
 </main>
 </body>

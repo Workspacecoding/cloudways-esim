@@ -1,3 +1,7 @@
+#main-container {
+  min-height: auto !important;
+  padding: 0 !important;
+}
 /*產品列表*/
 .search-destination {
   background: linear-gradient(to bottom right, rgba(220, 237, 252, 0.5), #ffffff);
@@ -49,6 +53,33 @@
     max-width: 1250px;
     margin: 0 auto;
   }
+  
+  .pagination {
+    display: flex;
+    justify-content: center; /* ⬅ 水平置中 */
+    align-items: center;
+    gap: 8px; /* 元素間距 */
+    flex-wrap: wrap;
+    margin: 2em auto;
+    width: 100%;
+  }
+  
+  .pagination a,
+  .pagination span {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #0073aa;
+    text-decoration: none;
+  }
+  
+  .pagination .current {
+    background-color: #0073aa;
+    color: white;
+    font-weight: bold;
+  }
+  
   
 
 

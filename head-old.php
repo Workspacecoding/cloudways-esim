@@ -1,0 +1,60 @@
+
+<body <?php body_class(); ?> <!--✅ 補上 body -->
+
+
+
+<header class="site-header">
+  <div class="header-container">
+    <div class="logo"><a href="<?php echo home_url(); ?>"><?php bloginfo( 'name' ); ?></a></div>
+
+    <!-- ✅ 漢堡選單按鈕 -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <!-- ✅ 桌機版選單 -->
+    <nav class="nav-desktop">
+      <a class="btn-desktop" href="<?php echo home_url('/destinations'); ?>"><span>旅遊目的地</span></a>
+      <a href="<?php echo home_url('/what-is-esim'); ?>">什麼是eSIM</a>
+      <a href="<?php echo home_url('/esim-phones'); ?>">支援的裝置</a>
+      <a href="<?php echo home_url('/blog'); ?>">部落格</a>
+      <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
+      <a href="<?php echo home_url('/question'); ?>">常見問題</a>
+      <a href="<?php echo home_url('/my-account'); ?>" class="guidance-link">
+  <span class="icon-user"></span>
+  <?php echo is_user_logged_in() ? '會員中心' : '註冊/登入'; ?>
+</a>
+<a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart"></a>
+<?php echo do_shortcode('[woocs sd=1]'); ?>
+
+
+    </nav>
+  </div>
+
+  <!-- ✅ 手機版選單 -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+
+      <button class="close-btn" id="menuClose">&times;</button>
+    </div>
+    <div class="mobile-menu-body">
+<!-- HTML -->
+<div class="menu-item-flex">
+  <span class="icon-currency"></span>
+  <?php echo do_shortcode('[woocs sd=1]'); ?>
+</div>
+<a href="<?php echo home_url('/my-account'); ?>" class="guidance-link">
+  <span class="icon-user-mobile"></span>
+  <?php echo is_user_logged_in() ? '會員中心' : '註冊/登入'; ?>
+</a>
+<a href="<?php echo home_url('/cart'); ?>" class="icon-link" data-icon="cart">購物車</a>
+      <a href="<?php echo home_url('/what-is-esim'); ?>">什麼是eSIM</a>
+      <a href="<?php echo home_url('/esim-phones'); ?>">支援的裝置</a>
+      <a href="<?php echo home_url('/blog'); ?>">部落格</a>
+      <a href="<?php echo home_url('/about-us'); ?>">關於我們</a>
+      <a href="<?php echo home_url('/question'); ?>">常見問題</a>
+      <a class="btn-mobile full-width" href="<?php echo home_url('/destinations'); ?>">旅遊目的地</a>
+    </div>
+  </div>
